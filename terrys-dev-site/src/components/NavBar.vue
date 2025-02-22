@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import NavItem from './NavItem.vue'
-import DropdownMenu from './DropdownMenu.vue'
 </script>
 
 <template>
   <nav class="nav-bar">
     <ul class="nav-list">
-      <nav-item to="/" text="Home"></nav-item>
-      <nav-item to="/about" text="About"></nav-item>
-      <dropdown-menu text="Projects">
-        <nav-item to="/service1" text="Vue Website"></nav-item>
-        <nav-item to="/service2" text="React Website"></nav-item>
-        <nav-item to="/service2" text="Angular Website"></nav-item>
-      </dropdown-menu>
+      <slot slot="slot1"></slot>
+      <slot name="slot2"></slot>
+      <slot name="slot3"></slot>
+      <slot name="slot4"></slot>
+      <slot name="slot5"></slot>
       <nav-item to="/contact" text="Contact"></nav-item>
     </ul>
   </nav>
