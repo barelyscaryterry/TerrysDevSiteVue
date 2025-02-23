@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import NavItem from './NavItem.vue'
 
-defineProps<{ text: string }>()
+defineProps<{ label: string, navItems: NavItem[] }>()
 
 const isOpen = ref(false)
 
@@ -11,12 +12,12 @@ const toggleMenu = () => {
 </script>
 
 <template>
-  <li class="dropdown" @mouseenter="toggleMenu" @mouseleave="toggleMenu">
-    <span class="dropdown-text">{{ text }}</span>
+  <div class="dropdown" @mouseenter="toggleMenu" @mouseleave="toggleMenu">
+    <span class="dropdown-text">{{ label }}</span>
     <ul v-if="isOpen" class="dropdown-menu">
-      <slot></slot>
+      <NavItem v-for="item in navItems" :key="item.id" :to="item.to" :text="item.text" :id="item.id"></NavItem>
     </ul>
-  </li>
+  </div>
 </template>
 
 <style scoped>

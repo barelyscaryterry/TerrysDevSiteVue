@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { NavItem } from '../types/NavItem'
 
-defineProps<{ to: string, text: string, icon?: string }>()
+defineProps<NavItem>()
+
 </script>
 
 <template>

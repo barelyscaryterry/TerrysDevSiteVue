@@ -4,13 +4,8 @@ import NavItem from './NavItem.vue'
 
 <template>
   <nav class="nav-bar">
-    <ul class="nav-list">
-      <slot slot="slot1"></slot>
-      <slot name="slot2"></slot>
-      <slot name="slot3"></slot>
-      <slot name="slot4"></slot>
-      <slot name="slot5"></slot>
-      <nav-item to="/contact" text="Contact"></nav-item>
+    <ul v-if="isOpen" class="dropdown-menu">
+      <NavItem v-for="item in navItems" :key="item.id" :to="item.to" :text="item.text" :id="item.id"></NavItem>
     </ul>
   </nav>
 </template>
@@ -19,13 +14,6 @@ import NavItem from './NavItem.vue'
 .nav-bar {
   background-color: #333;
   padding: 1rem;
-}
-
-.nav-list {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 .nav-list > * {
