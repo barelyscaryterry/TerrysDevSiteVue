@@ -1,33 +1,49 @@
 <script setup lang="ts">
 import { NavItem } from '../types/NavItem'
+import { RenderableComponent } from '../types/RenderableComponent.ts'
 
 defineProps<NavItem>()
+
+
+const render: RenderableComponent['render'] = () => (`
+ <div class="nav-item">
+    <router-link :to="to" class="nav-link">
+        <span v-if="icon" class="nav-icon">
+            <img :src="icon" alt="" />
+        </span>
+      <span class="nav-text">{{ text }}</span>
+    </router-link>
+</div>
+`)
 
 </script>
 
 <template>
-  <li class="nav-item">
+  <div class="nav-item">
     <router-link :to="to" class="nav-link">
       <span v-if="icon" class="nav-icon">
         <img :src="icon" alt="" />
       </span>
       <span class="nav-text">{{ text }}</span>
     </router-link>
-  </li>
+  </div>
 </template>
 
 <style scoped>
 .nav-item {
-  list-style: none;
   margin: 0 1rem;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: inherit;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   transition: background-color 0.3s, color 0.3s;
 }
 

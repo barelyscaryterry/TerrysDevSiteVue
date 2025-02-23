@@ -1,0 +1,8 @@
+{
+  "navItems": [
+    { "id": "1", "to": "/", "text": "Terry's Dev Site" },
+    { "id": "2", "to": "/about", "text": "About" },
+    { "id": "3", "to": "/contact", "text": "Contact" }
+  ],
+  "dropdownLabel": "More"
+}

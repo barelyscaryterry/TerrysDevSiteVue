@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import NavItem from './NavItem.vue'
+import { RenderableComponent } from '../types/RenderableComponent.ts'
+
+const props = defineProps<{
+  navigationComponents: RenderableComponent[]
+}>()
 </script>
 
 <template>
-  <nav class="nav-bar">
-    <ul v-if="isOpen" class="dropdown-menu">
-      <NavItem v-for="item in navItems" :key="item.id" :to="item.to" :text="item.text" :id="item.id"></NavItem>
-    </ul>
+  <nav>
+    <component v-for="(component, index) in navigationComponents" :is="component.render" :key="index" />
   </nav>
 </template>
 
 <style scoped>
-.nav-bar {
-  background-color: #333;
-  padding: 1rem;
-}
 
 .nav-list > * {
   margin-right: 1rem;

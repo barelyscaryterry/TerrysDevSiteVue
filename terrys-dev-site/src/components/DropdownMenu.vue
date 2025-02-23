@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import NavItem from './NavItem.vue'
+import { RenderableComponent } from '../types/RenderableComponent.ts'
 
 defineProps<{ label: string, navItems: NavItem[] }>()
 
@@ -9,6 +10,16 @@ const isOpen = ref(false)
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
+
+const render: RenderableComponent['render'] = () => (`
+    <div class="dropdown" @mouseenter="toggleMenu" @mouseleave="toggleMenu">
+      <span class="dropdown-text">{{ label }}</span>
+      <ul v-if="isOpen" class="dropdown-menu">
+        <NavItem v-for="item in navItems" :key="item.id" :to="item.to" :text="item.text" :id="item.id"></NavItem>
+      </ul>
+  </div>
+`)
+
 </script>
 
 <template>
